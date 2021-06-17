@@ -111,8 +111,22 @@ body {
   line-height: 18px;
 }
 
+#commentLists {
+  font-size: 14px;
+}
+
+#commentLists li {
+  margin-bottom: 8px;
+}
+
 .commentWrapper .name {
+  margin-right: 10px;
   font-weight: bold;
+}
+
+.commentWrapper .delete {
+  float: right;
+  cursor: pointer;
 }
 
 .comment {
@@ -121,12 +135,13 @@ body {
 }
 
 .comment input {
+  width: 400px;
   border: none;
   font-size: 16px;
   outline: none;
 }
 
-#register {
+#submit {
   float: right;
   border: none;
   background-color: white;
