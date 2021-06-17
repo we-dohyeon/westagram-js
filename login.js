@@ -1,34 +1,65 @@
+// 함수 표현식과 선언
+// change랑 input의 차이  => input event : value가 변할 때
+//init 의 이유
+
+
 const inputs = document.querySelectorAll("input");
+// const inputs = document.getElementsByClassName("loginBoxWrapper")[0];
 const loginBtn = document.getElementById("loginBtn");
 
-let idValue = false;
-let pwValue = false;
+function handleBtn(btn){
+  if(btn){
+    loginBtn.disabled = false;
+    loginBtn.style.opacity = 1;
+    loginBtn.style.cursor = "pointer";
 
-// 함수 표현식과 선언
-// 인자와 파라미터
-function activeBtn(e, input){
-
-  console.log(e.target.id);
-  console.log(e.target.value.length);
-  if(e.target.id === id && e.target.value.length > 0) {
-    console.log(1);
-    idValue = true;
+    if(window.event.keyCode === 13){
+      success();
+    }
+  } else {
+    loginBtn.disabled = true;
+    loginBtn.style.opacity = 0.5;
+    loginBtn.style.cursor = "default";
   }
-
-  if(e.target.id === pw && e.target.value.length > 0) {
-    console.log(2);
-    pwValue = true;
-  }
-
-  console.log(idValue, pwValue);
-
-  // if(idValue.length > 0 && pwValue.length > 0){
-  //   loginBtn.removeAttribute('disabled');
-  // }
 }
 
-// input event : value가 변할 때
-// change랑 input의 차이
-inputs.forEach(input => input.addEventListener("input", e => activeBtn(e, input)));
+function checkValidation(value, id){
+  if(id === "id" && value.length > 0){
+    return true;
+  } else if(id === "id" && !value.length) {
+    return false;
+  } else if(id === "pw" && value.length > 0){
+    return true;
+  } else if (id === "pw" && !value.length) {
+    return false;
+  }
+}
 
-loginBtn.addEventListener("click", () => {console.log(11)});
+function handleInput(e) {
+  const idValue = document.getElementById("id").value;
+  const pwValue = document.getElementById("pw").value;
+
+  const isValidId = checkValidation(idValue, e.target.id);
+  const isValidPw = checkValidation(pwValue, e.target.id);
+
+  if(isValidId && isValidPw){
+    handleBtn(true);
+  } else {
+    handleBtn(false);
+  }
+}
+
+function success() {
+  alert("환영합니다!");
+  // window.open("http://127.0.0.1:5500/main.html");
+  location.replace("http://127.0.0.1:5500/main.html");
+}
+
+init = () => {
+  inputs.forEach(input => input.addEventListener("input", handleInput));
+  loginBtn.addEventListener("click", success);
+  inputs.forEach(input => input.addEventListener("keyup", handleInput));
+  // inputs.addEventListener("input", activeBtn)
+}
+
+init();

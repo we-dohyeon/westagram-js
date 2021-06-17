@@ -59,7 +59,7 @@ body,
   color: white;
   outline: none;
   opacity: 0.5;
-  cursor: pointer;
+  cursor: default;
 }
 
 .loginInner a {
