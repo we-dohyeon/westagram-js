@@ -1,48 +1,55 @@
-// 함수 표현식과 선언
-// change랑 input의 차이  => input event : value가 변할 때
-//init 의 이유
+"use strict";
 
-
-const inputs = document.querySelectorAll("input");
-// const inputs = document.getElementsByClassName("loginBoxWrapper")[0];
+const inputs = document.getElementsByClassName("loginForm")[0];
 const loginBtn = document.getElementById("loginBtn");
 
-function handleBtn(btn){
-  if(btn){
+function handleBtn(btnValid) {
+  // 3항 연산자
+  // loginBtn.disabled = !btnValid ? true : false;
+  // loginBtn.style.opacity = btnValid ? 1 : 0.5;
+  // loginBtn.style.cursor = btnValid ? "pointer" : "default";
+
+  if (btnValid) {
+    // button active
     loginBtn.disabled = false;
     loginBtn.style.opacity = 1;
     loginBtn.style.cursor = "pointer";
 
-    if(window.event.keyCode === 13){
+    if (window.event.keyCode === 13) {
       success();
     }
   } else {
+    // button deactive
     loginBtn.disabled = true;
     loginBtn.style.opacity = 0.5;
     loginBtn.style.cursor = "default";
   }
 }
 
-function checkValidation(value, id){
-  if(id === "id" && value.length > 0){
+function checkId(value) {
+  if (value.length > 0) {
     return true;
-  } else if(id === "id" && !value.length) {
-    return false;
-  } else if(id === "pw" && value.length > 0){
-    return true;
-  } else if (id === "pw" && !value.length) {
+  } else {
     return false;
   }
 }
 
-function handleInput(e) {
+function checkPw(value) {
+  if (value.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function handleInput() {
   const idValue = document.getElementById("id").value;
   const pwValue = document.getElementById("pw").value;
 
-  const isValidId = checkValidation(idValue, e.target.id);
-  const isValidPw = checkValidation(pwValue, e.target.id);
+  const isValidId = checkId(idValue);
+  const isValidPw = checkPw(pwValue);
 
-  if(isValidId && isValidPw){
+  if (isValidId && isValidPw) {
     handleBtn(true);
   } else {
     handleBtn(false);
@@ -51,15 +58,14 @@ function handleInput(e) {
 
 function success() {
   alert("환영합니다!");
-  // window.open("http://127.0.0.1:5500/main.html");
   location.replace("http://127.0.0.1:5500/main.html");
 }
 
-init = () => {
-  inputs.forEach(input => input.addEventListener("input", handleInput));
+// script 위치
+const init = () => {
+  inputs.addEventListener("input", handleInput);
+  inputs.addEventListener("keyup", handleInput);
   loginBtn.addEventListener("click", success);
-  inputs.forEach(input => input.addEventListener("keyup", handleInput));
-  // inputs.addEventListener("input", activeBtn)
-}
+};
 
 init();
