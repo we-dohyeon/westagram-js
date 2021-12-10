@@ -25,13 +25,10 @@ function registerComment(value) {
 
 function makeDeleteEvent(newCommentList) {
   const deleteBtn = newCommentList.querySelector(".delete");
-  deleteBtn.addEventListener("click", () =>
-    deleteComment(deleteBtn, newCommentList)
-  );
+  deleteBtn.addEventListener("click", () => deleteComment(newCommentList));
 }
 
-function deleteComment(deleteBtn, newCommentList) {
-  deleteBtn.removeEventListener("click", deleteComment);
+function deleteComment(newCommentList) {
   newCommentList.remove();
 }
 

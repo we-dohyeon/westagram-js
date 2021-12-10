@@ -3,6 +3,28 @@
 const inputs = document.getElementsByClassName("loginForm")[0];
 const loginBtn = document.getElementById("loginBtn");
 
+const handleInput = function () {
+  const idValue = document.getElementById("id").value;
+  const pwValue = document.getElementById("pw").value;
+
+  const isValidId = checkValue(idValue);
+  const isValidPw = checkValue(pwValue);
+
+  if (isValidId && isValidPw) {
+    handleBtn(true);
+  } else {
+    handleBtn(false);
+  }
+};
+
+function checkValue(value) {
+  if (value.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function handleBtn(btnValid) {
   // 3항 연산자
   // loginBtn.disabled = !btnValid ? true : false;
@@ -26,46 +48,15 @@ function handleBtn(btnValid) {
   }
 }
 
-function checkId(value) {
-  if (value.length > 0) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function checkPw(value) {
-  if (value.length > 0) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function handleInput() {
-  const idValue = document.getElementById("id").value;
-  const pwValue = document.getElementById("pw").value;
-
-  const isValidId = checkId(idValue);
-  const isValidPw = checkPw(pwValue);
-
-  if (isValidId && isValidPw) {
-    handleBtn(true);
-  } else {
-    handleBtn(false);
-  }
-}
-
 function success() {
   alert("환영합니다!");
   location.replace("http://127.0.0.1:5500/main.html");
 }
 
-// script 위치
-const init = () => {
+function init() {
   inputs.addEventListener("input", handleInput);
   inputs.addEventListener("keyup", handleInput);
   loginBtn.addEventListener("click", success);
-};
+}
 
 init();

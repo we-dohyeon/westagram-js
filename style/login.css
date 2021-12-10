@@ -1,10 +1,9 @@
 html,
-body,
-.loginContainer {
+body {
   height: 100%;
 }
 
-.loginContainer {
+body {
   /* 1번 */
   display: flex;
   justify-content: center;
@@ -18,7 +17,7 @@ body,
   /* position: relative; */
 }
 
-.loginInner {
+.loginContainer {
   /* position: absolute;
   top: 50%;
   left: 50%;
@@ -29,7 +28,7 @@ body,
   text-align: center;
 }
 
-.loginInner h1 {
+.loginContainer h1 {
   font-family: "Pacifico", cursive;
   font-size: 50px;
 }
@@ -62,7 +61,7 @@ body,
   cursor: default;
 }
 
-.loginInner a {
+.loginContainer a {
   color: darkblue;
   font-weight: bold;
   text-decoration: none;

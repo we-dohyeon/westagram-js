@@ -1,4 +1,5 @@
 body {
+  min-width: 1000px;
   background-color: #f2f2f2;
 }
 
@@ -205,4 +206,8 @@ body {
 
 .contentWrapper .sectionWrapper {
   margin-bottom: 20px;
+}
+
+aside {
+  min-width: 250px;
 }
